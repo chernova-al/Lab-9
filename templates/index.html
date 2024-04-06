@@ -1,35 +1,57 @@
 <html>
 <head>
-    <title>Best store!</title>
-    <script type="text/javascript" src="/static/update.js"></script>
-    <link href="static/store.css" rel="stylesheet">
-</head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(252, 184, 205);
+        }
+        .header {
+            background-color: rgb(250, 137, 173);
+            padding: 20px;
+            text-align: center;
+            font-family:'Times New Roman';
+        }
+    </style>
+    <title> Games</title>
+    <script type="text/javascript" src="/static/main.js"></script>
+    <link href="/static/main.css" rel="stylesheet">
+    </head>
 
-<body>
-    <h1>Furniture store:</h1>
-    <h3>Add new product:</h3>
-    <form>
-        <div>
-            <input type="text" name="prod_name" id="prod_name">
-            <label for="prod_name">Product name</label>
+    <body>
+        <div class="header">
+            <h1>Библиотека</h1>
         </div>
-        <div>
-            <input type="number" name="price" id="price">
-            <label for="price">Price (rub.)</label>
-        </div>
-        <button onClick="addProduct()">Add</button>
-    </form>
-    <ul>
-        {% for product in products_list %}
-        <li>
+        <h1> Установленные игры</h1>
+
+        <form>
             <div>
-                <div>{{ product['prod_name'] }}</div>
-                <div>{{ product['price'] }} rub.</div>
-                <input value="{{product['id']}}" onChange="updateProd(this)" name="in_stock" type="checkbox" {% if product.in_stock %} checked {% endif %}>
-                <label for="in_stock">In stock</label>
+                <input type="text" name="played" id="played">
+                <label for="played">Название игры</label>
             </div>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
+                <input type="date" name="release" id="release">
+                <label for="release">Дата выхода</label>
+                <div>
+                    <button onClick="createGame()">
+                        Добавить
+                    </button>
+                </div>
+        </form>
+        <ul>
+            {% for game in game_list %}
+            <li>
+                <div>
+                    <div>
+                        {{ game['release'] }}
+                    </div>
+                    <div>
+                        {{ game['played'] }}
+                    </div>
+                    <input  value="{{game['id']}}" onChange="updateGame(this)" name ='ready' type="checkbox" {% if game.ready %} checked {% endif %}/>
+                    <label for="'ready">Завершена</label>
+                </div>
+            </li>
+            {% endfor%}
+        </ul>
+    </body>
 </html>
