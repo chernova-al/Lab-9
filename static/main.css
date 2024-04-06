@@ -1,0 +1,9 @@
+ul {
+    list-style-type: "🗡️"
+}
+
+li {
+    margin-bottom: 10px;
+    border: solid black 1px;
+    padding: 10px;
+}
